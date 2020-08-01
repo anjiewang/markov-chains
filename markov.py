@@ -1,6 +1,6 @@
 """Generate Markov text from text files."""
 
-import random
+import random 
 from collections import defaultdict
 
 def open_and_read_file(file_path):
@@ -57,6 +57,8 @@ def make_chains(text_string):
         value = text[idx+2]
         chains[key].append(value)
         
+        
+
     return chains
 
 
@@ -73,36 +75,23 @@ def make_text(chains):
     key (you, like)
     
     '''
-    list_chains = list(chains.keys())
-    link = random.choice(list_chains)
-    words=[link[0],link[1]]
-    word = random.choice(chains[link])
-    
 
-    while word != [] :
-        key = (words[-1], word)
-        print(link)
-        words.append(word)
+    link = random.choice(list(chains.keys()))
+    words= [link[0],link[1]]
+    words.append(random.choice(chains[link]))
+    key = (words[-2],words[-1])
+
+    
+    while key in chains :
         word = random.choice(chains[key])
+        words.append(word)
+        key = (words[-2],words[-1])
     
 
     return " ".join(words)
 
 
-input_path = "green-eggs.txt"
-
-# Open the file and turn it into one long string
-input_text = open_and_read_file(input_path)
-
-# Get a Markov chain
-chains = make_chains(input_text)
-
-# Produce random text
-random_text = make_text(chains)
-
-# print(random_text)
-
-# input_path = "gettysburg.txt"
+# input_path = "green-eggs.txt"
 
 # # Open the file and turn it into one long string
 # input_text = open_and_read_file(input_path)
@@ -114,3 +103,16 @@ random_text = make_text(chains)
 # random_text = make_text(chains)
 
 # print(random_text)
+
+input_path = "gettysburg.txt"
+
+# Open the file and turn it into one long string
+input_text = open_and_read_file(input_path)
+
+# Get a Markov chain
+chains = make_chains(input_text)
+
+# Produce random text
+random_text = make_text(chains)
+
+print(random_text)
