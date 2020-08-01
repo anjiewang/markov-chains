@@ -1,6 +1,6 @@
 """Generate Markov text from text files."""
 
-from random import choice
+import random
 from collections import defaultdict
 
 def open_and_read_file(file_path):
@@ -56,8 +56,6 @@ def make_chains(text_string):
         value = text[idx+2]
         chains[key].append(value)
         
-        
-
     return chains
 
 
@@ -65,8 +63,27 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
+    '''
+    words=[would,you]
+    key= (would, you)
 
-    # your code goes here
+    words.append(like)
+    words[would,you,like]
+    key (you, like)
+    
+    '''
+    list_chains = list(chains.keys())
+    link = random.choice(list_chains)
+    print(link)
+    words.append(link[0])
+    words.append(link[1])
+    print(words)
+    words.append(random.choice(chains[link]))
+
+    while words[-1] != "am?" :
+        key= (words[-2],words[-1])
+        words.append(random.choice(chains[key]))
+    
 
     return " ".join(words)
 
