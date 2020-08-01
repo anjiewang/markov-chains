@@ -9,9 +9,10 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
+    file = open(file_path)
+    contents = file.read()
+    file.close()
 
-    # your code goes here
-    contents = open(file_path).read()
     return contents
 
 
@@ -62,7 +63,7 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    words = []
+    
     '''
     words=[would,you]
     key= (would, you)
@@ -74,15 +75,15 @@ def make_text(chains):
     '''
     list_chains = list(chains.keys())
     link = random.choice(list_chains)
-    print(link)
-    words.append(link[0])
-    words.append(link[1])
-    print(words)
-    words.append(random.choice(chains[link]))
+    words=[link[0],link[1]]
+    word = random.choice(chains[link])
+    
 
-    while words[-1] != "am?" :
-        key= (words[-2],words[-1])
-        words.append(random.choice(chains[key]))
+    while word != [] :
+        key = (words[-1], word)
+        print(link)
+        words.append(word)
+        word = random.choice(chains[key])
     
 
     return " ".join(words)
@@ -99,4 +100,17 @@ chains = make_chains(input_text)
 # Produce random text
 random_text = make_text(chains)
 
-print(random_text)
+# print(random_text)
+
+# input_path = "gettysburg.txt"
+
+# # Open the file and turn it into one long string
+# input_text = open_and_read_file(input_path)
+
+# # Get a Markov chain
+# chains = make_chains(input_text)
+
+# # Produce random text
+# random_text = make_text(chains)
+
+# print(random_text)
