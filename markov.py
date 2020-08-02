@@ -2,6 +2,7 @@
 
 import random 
 from collections import defaultdict
+import re
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -86,25 +87,15 @@ def make_text(chains):
         word = random.choice(chains[key])
         words.append(word)
         key = (words[-2],words[-1])
-    
-
+        
     return " ".join(words)
 
+def print_text(text):
+    pass
 
-# input_path = "green-eggs.txt"
 
-# # Open the file and turn it into one long string
-# input_text = open_and_read_file(input_path)
-
-# # Get a Markov chain
-# chains = make_chains(input_text)
-
-# # Produce random text
-# random_text = make_text(chains)
-
-# print(random_text)
-
-input_path = "gettysburg.txt"
+#input_path = "gettysburg.txt"
+input_path = "green-eggs.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
@@ -116,3 +107,4 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print(random_text)
+
