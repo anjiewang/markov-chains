@@ -90,10 +90,6 @@ def make_text(chains):
         
     return " ".join(words)
 
-def print_text(text):
-    pass
-
-
 #input_path = "gettysburg.txt"
 input_path = "green-eggs.txt"
 
